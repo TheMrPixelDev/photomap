@@ -24,6 +24,20 @@
         text-decoration: none;
         text-align: center;
     }
+
+    .open-image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .open-image a {
+        background: lightblue;
+        padding: 5px 20px;
+        border-radius: 5px;
+        border: 1px #56afcd solid;
+        color: black;
+        text-decoration: underline;
+    }
 </style>
 
 <script>
@@ -39,7 +53,8 @@
             L.marker({{ json_encode($position) }}).addTo(map)
                 .bindPopup(`<b>{{ $marker->title }}</b>
                     <em>{{ $marker->author }}</em>
-                    <img src="img/{{ $marker->file }}" style="max-width: 100%; max-height: 100%"/>`);
+                    <img src="img/{{ $marker->file }}" style="max-width: 100%; max-height: 100%"/>
+                    <div class="open-image"><a href="img/{{ $marker->file }}" target="_blank">Öffnen</a></div>`);
         {{ if; }}
     {{ each; }}
 </script>
