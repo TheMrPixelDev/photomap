@@ -17,7 +17,7 @@
 
 <body>
     <main>
-        {{ $slot }}
+        {{ ==$slot }}
     </main>
 </body>
 
