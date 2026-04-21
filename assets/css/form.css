@@ -11,7 +11,8 @@ label {
 
 input[type="text"],
 input[type="password"],
-textarea {
+textarea,
+.drop-zone {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -21,46 +22,32 @@ textarea {
 }
 
 .file-input-wrapper {
-  position: relative;
+    position: relative;
 }
 
 .drop-zone {
-  position: relative;
-  cursor: pointer;
-}
-
-#photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.drop-zone {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: #fff;
-    color: #111;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-height: 40px;
-}
-
-.drop-zone.has-file {
-  background-color: #d4edda;
-  border-color: #28a745;
+    position: relative;
+    cursor: pointer;
 }
 
 .drop-zone:hover {
     border-color: #888;
     background-color: #f9f9f9;
+}
+
+#photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.drop-zone.has-file {
+    background-color: #d4edda;
+    border-color: #28a745;
 }
 
 .radio-group {

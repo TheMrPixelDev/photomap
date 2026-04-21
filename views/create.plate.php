@@ -14,11 +14,13 @@
     <input type="text" required minlength="2" maxlength="100" name="author" id="author" value="{{ session()->take('author') }}" />
 
     <label for="photo"><b>Foto</b></label>
-    <div class="drop-zone" id="dropZone" onclick="document.getElementById('photo').click()">
-        <input type="file" id="photo" name="photo" required accept="*/*"
-            onchange="this.closest('.drop-zone').classList.toggle('has-file', this.files.length > 0)" />
-        <div class="drop-zone-text" id="dropText">
-            Foto wählen oder hierher ziehen <span>JPG bis 10 MB</span>
+    <div class="file-input-wrapper">
+        <div class="drop-zone" id="dropZone">
+            <input type="file" id="photo" name="photo" required accept="*/*"
+                onchange="this.closest('.drop-zone').classList.toggle('has-file', this.files.length > 0)" />
+            <div class="drop-zone-text" id="dropText">
+                Foto wählen oder hierher ziehen <span>JPG bis 10 MB</span>
+            </div>
         </div>
     </div>
 
