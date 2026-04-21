@@ -19,6 +19,11 @@
         body {
             margin: 0;
         }
+
+        a {
+            color: var(--a-color);
+            text-decoration: none;
+        }
     </style>
 </head>
 

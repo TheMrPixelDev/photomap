@@ -13,6 +13,17 @@
     <label for="author"><b>Autor:in</b></label>
     <input type="text" required minlength="2" maxlength="100" name="author" id="author" value="{{ session()->take('author') }}" />
 
+    <label><b>Koordinaten</b></label>
+
+    <p>Diese Koordinaten werden nur verwendet, falls das Bild selbst keine enthält.
+        Unter <span class="highlight">Android</span> unbedingt manuell den Ort <a href="/">auf der Karte auswählen</a>
+        oder hier die Koordinaten eingeben, da dort die Position automatisch gelöscht wird.</p>
+
+    <div class="row">
+        <input type="number" id="lat" name="lat" value="{{ $coords[0] }}" />
+        <input type="number" id="lon" name="lon" value="{{ $coords[1] }}" />
+    </div>
+
     <label for="photo"><b>Foto</b></label>
     <div class="file-input-wrapper">
         <div class="drop-zone" id="dropZone">
@@ -23,9 +34,6 @@
             </div>
         </div>
     </div>
-
-    <p class="mt">Unter Android funktioniert das ganze nicht, da dort automatisch
-    	die Koordinaten entfernt werden. Dann einfach am Laptop hochladen, da sollte es immer klappen.</p>
 
     <div class="row mt end">
         <a href="/" class="btn">Zurück</a>

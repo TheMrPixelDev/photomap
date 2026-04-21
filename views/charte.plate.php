@@ -57,4 +57,17 @@
                     <div class="open-image"><a href="img/{{ $marker->file }}" target="_blank">Öffnen</a></div>`);
         {{ if; }}
     {{ each; }}
+
+    const popup = L.popup();
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent(`Möchtest du an dieser Stelle hier ein Bild hochladen?
+                Bitte wähle die Position <span="highlight">möglichst genau</span> aus.
+                <a href="/create?pos=${e.latlng}" class="btn">Hochladen</a>`)
+            .openOn(map);
+    }
+
+    map.on('click', onMapClick);
 </script>

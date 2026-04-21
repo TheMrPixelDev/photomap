@@ -17,7 +17,13 @@ class MapController extends Controller
 
     public function create()
     {
-        return view('create');
+        $pos = request('pos');
+
+        return view('create', [
+            'coords' => $pos === null
+                ? [null, null]
+                : explode(', ', substr($pos, 7, strlen($pos) - 8)),
+        ]);
     }
 
     public function store()
@@ -56,13 +62,21 @@ class MapController extends Controller
 
         $location = Marker::getExifLocation($_FILES['photo']['tmp_name']);
 
+        if ($location === null || $location === false) {
+            $lat = request()->float('lat');
+            $lon = request()->float('lon');
+
+            if ($lat !== 0.0 || $lon !== 0.0) {
+                $location = [$lat, $lon, true]; // third element signals manual coordinates
+            }
+        }
+
         if ($location === null) {
             session([
                 'title' => $title,
                 'author' => $author,
-                'error' => 'Keine Geodaten gefunden. Können über
-                    <a href="https://www.thexifer.net">thexifer.net</a>
-                    nachträglich eingefügt werden.',
+                'error' => 'Keine Geodaten gefunden. Wähle bitte zuerst die Koordinaten
+                    auf der <a href="/">Karte</a> aus.',
             ]);
 
             return Redirect::path('/create');
@@ -72,7 +86,8 @@ class MapController extends Controller
             session([
                 'title' => $title,
                 'author' => $author,
-                'error' => 'Sieht so aus, als wären die Geodaten beim Upload gelöscht worden.',
+                'error' => 'Sieht so aus, als wären die Geodaten beim Upload vom Handy gelöscht worden.
+                    Wähle bitte zuerst die Koordinaten auf der <a href="/">Karte</a> aus.',
             ]);
 
             return Redirect::path('/create');
@@ -95,6 +110,8 @@ class MapController extends Controller
             title: $title,
             author: $author,
             file: $filename,
+            lat: count($location) === 3 ? $location[0] : null,
+            lon: count($location) === 3 ? $location[1] : null,
         );
 
         return Redirect::path('/');

@@ -9,3 +9,8 @@ $db->create('markers', [
     'author' => 'string not null',
     'file' => 'string not null',
 ]);
+
+$db->addColumns('markers', [
+    'lat' => 'float',
+    'lon' => 'float',
+]);

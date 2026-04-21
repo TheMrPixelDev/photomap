@@ -9,6 +9,8 @@ use PXP\Data\Model;
  * @property string $title
  * @property string $author
  * @property string $file
+ * @property float $lat
+ * @property float $lon
  */
 class Marker extends Model
 {
@@ -16,10 +18,14 @@ class Marker extends Model
 
     public function position(): array|null|false
     {
+        if ($this->lat !== null && $this->lon !== null) {
+            return [$this->lat, $this->lon];
+        }
+
         return self::getExifLocation(path("photos/$this->file"));
     }
 
-    public static function getExifLocation(string $file)
+    public static function getExifLocation(string $file): array|null|false
     {
         $exif = exif_read_data($file, 0, true);
 
