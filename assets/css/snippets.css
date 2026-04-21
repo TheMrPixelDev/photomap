@@ -114,6 +114,10 @@
     font-weight: bold;
 }
 
+.highlight {
+    background: yellow;
+}
+
 /**
  * Other Stuff
  */
